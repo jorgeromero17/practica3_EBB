@@ -1,4 +1,4 @@
-int sensor_pin = A1; //Corresponde al pin analógico 1 del microcontrolador.
+int sensor_pin = A0; //Corresponde al pin analógico 1 del microcontrolador.
 int sensor_value = 0; //para guardar el valor leido por el pin analogo.
 float converted_value = 0.00;
 float ratio = 0.00;
@@ -10,6 +10,7 @@ void _read_potentiometer(){
   ratio = (30.0 - 10.0) / (1023.0 - 0.0);
   converted_value = (sensor_value - 0) * ratio + 10.0;
   value = ceil(converted_value);
+  EEPROM.write(0, value);
   cy = 30-value;
 
   if(previus_u1<=15 && previus_u1!=0){
@@ -21,17 +22,12 @@ void _read_potentiometer(){
 
   if(value>15 && flag_u1 == true){
     u1 ++;
-    display.fillRect(16, 40, 20,7, WHITE); //x,y,width,height,color
-    display.setCursor(16, 40);
-    display.print(u1);
+    EEPROM.write(1, u1);
     flag_u1 = false;
   }
   if(value>20 && flag_u2 == true){
     u2 ++;
-    display.fillRect(58, 40, 20,7, WHITE); //x,y,width,height,color
-    display.setCursor(58, 40);
-    display.print(u2);
-    flag_u1 = false;
+    EEPROM.write(2, u2);
     flag_u2 = false;
   }
   previus_u1 = value;

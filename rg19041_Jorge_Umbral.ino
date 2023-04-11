@@ -1,6 +1,7 @@
 #include <SPI.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_PCD8544.h>
+#include <EEPROM.h>
 
 int RST = 9, CE = 10, DC = 11, DIN = 12, CLK = 13;
 Adafruit_PCD8544 display = Adafruit_PCD8544(CLK, DIN, DC, CE, RST);
@@ -18,6 +19,9 @@ void setup() {
 }
 
 void loop() {
+  value = EEPROM.read(0);
+  u1 = EEPROM.read(1);
+  u2 = EEPROM.read(2);
   _read_potentiometer();
   _draw_graph();
   _print_values();

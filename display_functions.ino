@@ -95,4 +95,13 @@ void _print_values(){
   display.fillRect(46, 32, 44,7, WHITE); //x,y,width,height,color
   display.setCursor(46, 32);
   display.print(value);
+
+  display.fillRect(16, 40, 20,7, WHITE); //x,y,width,height,color
+  display.setCursor(16, 40);
+  display.print(u1);
+
+  display.fillRect(58, 40, 20,7, WHITE); //x,y,width,height,color
+  display.setCursor(58, 40);
+  display.print(u2);
+  display.display();
 }
